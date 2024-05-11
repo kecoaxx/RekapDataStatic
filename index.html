@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Rekap Data</title>
+    <link rel="icon" type="image/x-icon" href="unud.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700&display=swap');
+
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        font-family: sans-serif;
+        }
+
+        body{
+            height: 100vh;
+            background: #e1edf9;
+        }
+
+        .wrapper{
+        padding-top: 20px;
+        display: flex;
+        flex-wrap: wrap; /* Allow flex items to wrap onto multiple lines */
+        justify-content: center; /* Center align flex items horizontally */
+        }
+
+        .container{
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 0;
+        vertical-align: top;
+        }
+
+        .form_container{
+        background: white;
+        padding: 30px;
+        border-radius: 4px;
+        display: inline-block;
+        margin: 30px 30px;
+        justify-content: center;
+        align-items: center;
+        vertical-align: top;
+        max-width: 25px;
+        }
+
+        .wrapper .form_container{
+        background: #fff;
+        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
+        border-radius: 3px;
+        min-width: 500px;
+
+        }
+
+        .heading{
+        background: #015a80;
+        margin: -30px;
+        text-align: center;
+        color: white;
+        font-size: 24px;
+        margin-bottom: 35px;
+        padding: 10px;
+        cursor: pointer;
+        user-select: none;
+        transition: font-size 0.3s;
+        
+        }
+
+        .heading:hover {
+        font-size: 29px; /* Increase font-size on hover */
+        }
+
+        .header{
+        background: #015a80;
+        text-align: center;
+        color: white;
+        font-size: 19px;
+        padding: 10px;
+        
+        }
+
+        .wrapper .form_item{
+        margin-bottom: 25px;
+        overflow: hidden;
+        
+        }
+
+        .form_wrap.fullname,
+        .form_wrap.select_box{
+        display: flex;
+        }
+
+        .form_wrap.fullname .form_item,
+        .form_wrap.select_box .form_item{
+        width: 50%;
+        }
+
+        .form_wrap.fullname .form_item:first-child,
+        .form_wrap.select_box .form_item:first-child{
+        margin-right: 4%;
+        }
+
+        .wrapper .form_container .form_item label{
+        display: block;
+        margin-bottom: 5px;
+        }
+
+        .form_item input[type="text"],
+        .form_item select{
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #dadce0;
+        border-radius: 3px;
+        }
+
+        .form_item input[type="text"]:focus{
+        border-color: #6271f0;
+        }
+
+        .search{
+        width: 100%;
+        padding-top: 30px;
+        font-size: 20px;
+        border-radius: 3px;
+        display:flex;
+        align-items: flex-start;
+        justify-content: center;
+        }
+
+        .search input[type="text"]{
+        /* font-size: 24px; */
+        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
+        transition: font-size 0.3s;
+        }
+        .search input[type="text"]:hover{
+        font-size: 29px;
+        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .search input[type="text"]:focus{
+        font-size: 29px;
+        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn input[type="submit"]{
+        background: #1598d4;
+        border: 1px solid #1598d4;
+        padding: 10px;
+        width: 100%;
+        font-size: 16px;
+        letter-spacing: 1px;
+        border-radius: 3px;
+        cursor: pointer;
+        color: #fff;
+        }
+
+        table {
+        margin: 0 auto; /* Center the table itself */
+        border-collapse: collapse; /* Collapse border spacing */
+        width: 100%; /* Set the width of the table */
+        border: 1px solid #fff;
+        border-radius: 10px;
+        }
+
+        table td {
+        /* background-color: #007F9B; */
+        background-color: #4D8CB5;
+        /* background-color: #394955; */
+        }
+
+        th, td {
+            padding: 8px; /* Add padding to table cells */
+            border: 5px solid #fff; /* Add border to table cells */
+            min-width: 200px; /* Atur lebar minimum sel nama menjadi 200px */
+            
+            font-weight: bold; /* Bold font for table header */
+            font-family: sans-serif;
+            font-size: 25px;
+            }
+
+            th {
+            background-color: rgb(102, 168, 233);
+            color: #fff; /* Text color for table header */
+            }
+
+            tr th{
+            color: rgb(17, 58, 99); 
+            }
+
+        td a{
+            text-decoration: none; 
+            color: white;
+        }
+
+        td:hover, a:hover{
+            background-color: #015a80;
+        }
+
+        form.example input[type=text] {
+            padding: 10px;
+            font-size: 25px;
+            border: 0px solid #000;
+            float:inline-start;
+            /* width: 80%; */
+            background: #fff;
+            border-radius: 5px;
+        }
+        
+        /* Style the submit button */
+        form.example button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #015a80;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none; /* Prevent double borders */
+            cursor: pointer;
+        }
+        
+        form.example button:hover {
+            background: #0b7dda;
+        }
+        
+        /* Clear floats */
+        form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .form_item{
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body onload="toggleForm('sarjana'), toggleForm('profesi')">
+    <div class="header">
+        <br>
+        <h1>Spreadsheet Rekap Absensi</h1>
+        <br>
+        <h3>Tekan "Sarjana" atau "Profesi" untuk membuka list dari mata kuliah/blok masing-masing program <br>
+        atau cari kata kunci menggunakan kolom pencarian</h3>
+        <br>
+    </div>
+    <div class="search">
+    <form class="example" onsubmit="return false;">
+        <label for="search">Cari Mata Kuliah/Blok:</label>
+        <div class="input-wrapper">
+            <input type="text" name="search" id="search" oninput="searchTable()">
+        </div>
+        </form>
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="form_container" id="sarjana">
+                <div class="heading" id="sarjana_heading" onclick="toggleForm('sarjana')">
+                    <h2>Sarjana</h2>
+                </div>
+                <div class="form_item" id="sarjana_table">
+                    <table id="sarjana_table_content"></table>
+                </div>
+            </div>
+            <div class="form_container" id="profesi">
+                <div class="heading" id="profesi_heading" onclick="toggleForm('profesi')">
+                    <h2>Profesi</h2>
+                </div>
+                <div class="form_item" id="profesi_table">
+                    <table id="profesi_table_content"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function openForm(id) {
+            var container = document.getElementById(id);
+            var formItem = container.querySelector('.form_item');
+            formItem.style.display = 'block';
+            container.style.maxHeight = 'max-content';
+        }
+        
+        function toggleForm(id) {
+            var container = document.getElementById(id);
+            var formItem = container.querySelector('.form_item');
+            var maxHeight = formItem.style.display === 'none' ? 'max-content' : '0px';
+            formItem.style.display = formItem.style.display === 'none' ? 'block' : 'none';
+            container.style.maxHeight = maxHeight;
+        }
+        function searchTable() {
+            openForm('sarjana');
+            openForm('profesi');
+            
+            var input, filter, tables, table, tr, td, i, txtValue;
+            input = document.querySelector('.search input');
+            filter = input.value.toUpperCase();
+            tables = document.querySelectorAll('.form_item table');
+        
+            tables.forEach(function (table) {
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().includes(filter)) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            });
+        }
+
+        function populateTable(data, tableId) {
+            const table = document.getElementById(tableId);
+            data.forEach(item => {
+                const row = table.insertRow();
+                const cell = row.insertCell();
+                const link = document.createElement("a");
+                link.href = `https://docs.google.com/spreadsheets/d/${item.id}`;
+                link.target = "_blank";
+                link.textContent = item.Blok || item.MataKuliah; // Depending on the data structure
+                cell.appendChild(link);
+            });
+        }
+
+        const profesiData = [
+            {
+                "MataKuliah": "Ilmu Bedah Mulut Klinik I",
+                "id": "1dMSo1h4q19ukIf8kafiUeEdGnFrlrFI_JZaFA3GRmiU"
+            },
+            {
+                "MataKuliah": "Ilmu Bedah Mulut Klinik II",
+                "id": "1W0Ayy4XYDeHJsmljPh-3DWFTKCqVvfX5fy-VnyujIK4"
+            },
+            {
+                "MataKuliah": "Ilmu Bedah Mulut Klinik III",
+                "id": "1trD3U9fLNmM3C8bUP_Pvgx9vxPmCTWPrFJ3LJwvAVpA"
+            },
+            {
+                "MataKuliah": "Ilmu Bedah Mulut Klinik IV",
+                "id": "1xj60Af8eSB8kHTAaVp1u9a8I5Qaimdl0M4scb4EDbBY"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Anak Klinik I",
+                "id": "1AskT1z1-15mXDeTbjNE7NDOj5DxEtpLzxMAu0stPhMY"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Anak Klinik II",
+                "id": "1nyMUnxh9z5kLUqYddGEc9EWTmG1CnG3CgFROzaqvpPs"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Anak Klinik III",
+                "id": "1HHYuwE2ZQQsnPvCbgUza9MeY8Q-kWJyqTC2Tbd1pjfI"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Klinik Integrasi I",
+                "id": "1QA79ICjI0q1mqExkhE7M-PZm4wGsBEYyPHj3RvsnIlY"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Klinik Integrasi II",
+                "id": "1woLixZVJoaa4brE4pXoMKjjvIyTo8Q8Us9t0t3eYACM"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Klinik Integrasi III",
+                "id": "1-9cd50d9Y3KxChWXwu2VXk91Ca1UbQAree3ZJMAR3zg"
+            },
+            {
+                "MataKuliah": "Ilmu Kedokteran Gigi Klinik Integrasi IV",
+                "id": "1VLl6QdH2zR8-iGy_UnPUhqgieIpDBSCQxJlQrndBVT0"
+            }
+        ];
+
+        const blokRekap = [
+            {
+                "Blok": "Agama",
+                "id": "1Q42liA1zmOtr68gWxG5VwT6LifEuXsPkwvK6LgYh2_0"
+            },
+            {
+                "Blok": "Bedah Dental I",
+                "id": "1eIOk4fd7H8GyoYB81RMFwi6rnzGh0zIqyRuHHeILyvg"
+            },
+            {
+                "Blok": "Bedah Dental II",
+                "id": "1FXheOibzMOM9GyagFTGYDS1Mcp9zXt3EBvE-yDW6-3Y"
+            },
+            {
+                "Blok": "Biomaterial I",
+                "id": "1nVhkCPiS7-5C_4y6eO2AcSAJ3FSdlLfV04Q1d_JrNeM"
+            },
+            {
+                "Blok": "Biomaterial II",
+                "id": "1w6pxx6lRxoFWn2cbw7oha4zwW_xV9qdDvTxiOTAhm1o"
+            },
+            {
+                "Blok": "Biomedik I",
+                "id": "141Z3YpO_6wDgG1sXwrbilE81ufLqwyLvTXaG_ojTdv4"
+            },
+            {
+                "Blok": "Biomedik II",
+                "id": "1M9Vi5-J9p_YLr7QA4J9AtcjK0k_i5IOmUsyUKf1lfBA"
+            },
+            {
+                "Blok": "Etik dan Humaniora",
+                "id": "1KRNJbiBEsx7ZYv3fNvyhMJtTlOtoJeKTZq6Eu4XbBaA"
+            },
+            {
+                "Blok": "Filsafat",
+                "id": "1rl337i32ct_UMQczNse0TEdK_EM7JpTk6b4TDmRBXnU"
+            },
+            {
+                "Blok": "Gangguan Fungsi Sistem Stogmatognatik V",
+                "id": "1x_1tiix-lUYbnyj9M8EeDvy6fk540LR-Jjelh9IKFYU"
+            },
+            {
+                "Blok": "Gangguan Fungsi Stomatognatik I",
+                "id": "1bNJbcsK79wcMNbbmAknridGXfXqNnoUNk1dO_9JBKHM"
+            },
+            {
+                "Blok": "Gangguan Fungsi Stomatognatik II",
+                "id": "13bx0N6533aSOPhOIh_CZyZNAtkMtQ5ZhDUy2amVLFRQ"
+            },
+            {
+                "Blok": "Gangguan Fungsi Stomatognatik III",
+                "id": "1bPI_gI5kGnE-OyqG9NGg2iFXq1Mbwg0rXhKx9b81Wss"
+            },
+            {
+                "Blok": "Gangguan Fungsi Stomatognatik IV",
+                "id": "1thx1VqlMJ8bCeS9M_kSGW-VodCSzzrGndxSedJXGHEA"
+            },
+            {
+                "Blok": "IPE I",
+                "id": "1BGBCheQeKDtiitNiYv1f4DsGf-0Hyep6FCYtJ8gjB_U"
+            },
+            {
+                "Blok": "IPE II",
+                "id": "1rTKnMAXSg_x4clh8g5kLI_CxL-4QrEDwuw9bIpPWOTw"
+            },
+            {
+                "Blok": "IPE III",
+                "id": "1QeBMhjchJId3hMoBWonmH3T03wqtehKW7vrRZtg1d6o"
+            },
+            {
+                "Blok": "IPE IV",
+                "id": "1dh14UtRv3EYxzNds0aLFSEL85KBImIVLAaLpTB00O_Q"
+            },
+            {
+                "Blok": "Ilmu Kedokteran Klinik I",
+                "id": "1L2RhakjqL8KwX-drh4XAKGpFkMn09PX51EVrIUeb6hY"
+            },
+            {
+                "Blok": "Ilmu Kedokteran Klinik II",
+                "id": "1ODzRfMAWB2yQmXFYfsCOnmU8vrrh2mpdnLepOQrMOLE"
+            },
+            {
+                "Blok": "KKN",
+                "id": "1UJ4ExkHFfYZv-Hv3VzR2SZH7qJe2feSI9MFbmHIJDGU"
+            },
+            {
+                "Blok": "Kedokteran Gigi Dasar I",
+                "id": "1Q9aFQlWQnMkh_Dec5smxfJmRkWqvhu2u2e4vUOUI8GE"
+            },
+            {
+                "Blok": "Kedokteran Gigi Dasar II",
+                "id": "178xiHacgdSQksjU4T74_Qn_f-U3uk5Vv5H1tPLzj5tI"
+            },
+            {
+                "Blok": "Kedokteran Gigi Forensik",
+                "id": "1TaocRZdCITNFjzObzxpqEhSAiBw9QZisp6N0w19wHcc"
+            },
+            {
+                "Blok": "Kedokteran Gigi Pariwisata I",
+                "id": "1n8odPVUbpxr3qCZD7tbp7DzznXxATVwAHwnNfxt57tw"
+            },
+            {
+                "Blok": "Kedokteran Gigi Pariwisata II",
+                "id": "11lPAzMyQYbqJp3NS70cxQCRUxxfr8QIsifKK8ZOXlQ4"
+            },
+            {
+                "Blok": "Kedokteran Gigi Pariwisata III",
+                "id": "1o8CgBwsQ0OwWgR04nzzIMEAnGcXPslD7mQ7VZWWq8ns"
+            },
+            {
+                "Blok": "Kedokteran Gigi Pariwisata IV",
+                "id": "1X3Qjv2_aN4WRkdtnDpTo5L8uO_SDi_uZ8YPai97Uko4"
+            },
+            {
+                "Blok": "Kegawatdaruratan",
+                "id": "173lkWVC8D0NK6xhpddBxTXAmB3SjYIcUz5-M40Zl0D0"
+            },
+            {
+                "Blok": "Kelainan Jaringan Keras Gigi dan Jaringan Pulpa I",
+                "id": "1URgn1R-f28yG4_wsKqfz6m_FNDYEX09drHAGVBQY3ak"
+            },
+            {
+                "Blok": "Kelainan Jaringan Keras Gigi dan Jaringan Pulpa II",
+                "id": "1JR5R4mjMyIA1PyQXB9oLO9X-64CVqxhWqQofw71VYDs"
+            },
+            {
+                "Blok": "Kelainan Jaringan Keras Gigi dan Jaringan Pulpa III",
+                "id": "1dTfJHmGg_oVULATB2NOcpyBD103mpD3IRPIBBt6BUXE"
+            },
+            {
+                "Blok": "Kelainan Jaringan Lunak I",
+                "id": "1fAiThVlDxBs3CBs0AoO6udMLHeCJqOOfuiiL1eZUYjQ"
+            },
+            {
+                "Blok": "Kelainan Jaringan Lunak II",
+                "id": "1z4X7FpBjZEL88b7xL1_95qm6oCa-JHwlK8zyezb7zlo"
+            },
+            {
+                "Blok": "Kelainan Tumbuh Kembang I",
+                "id": "1r-5H_g6Cx94rOfRGQ9fl5IcUrZsKwQ04YlVcdpDYk7E"
+            },
+            {
+                "Blok": "Kelainan Tumbuh Kembang II",
+                "id": "1X40Mwy-otVUBOZhmv4ta9ySdMkVIYEFkn7iA4r_-f1g"
+            },
+            {
+                "Blok": "Kewarganegaraan",
+                "id": "1000NQYWygHvOrDBznjQipHHL3b7F2w_J9qzjafxppgM"
+            },
+            {
+                "Blok": "Manajemen Kesehatan",
+                "id": "1apEYau5OtfmBspV1NCtDSoSaVvZYnCv6XpxsbjQ-YlY"
+            },
+            {
+                "Blok": "Manajemen Perilaku",
+                "id": "1xsf9_QS_5qTzcmvKpMxnWBCH2BnSNt3NuPR_CVpFaxc"
+            },
+            {
+                "Blok": "Metode Pembelajaran",
+                "id": "11EQFqHKTpm8QugM32Qw0IPyRq9SihL75qD5qVhWy7Ak"
+            },
+            {
+                "Blok": "Metodologi Penelitian",
+                "id": "1ZpqE3uA1rojgb8lMJoPy06--voKo3KY3GsNyX9ibZiA"
+            },
+            {
+                "Blok": "Neoplasma",
+                "id": "1Y-lJBpTZZYVU-hSwhIvELadX0W-uwrcA3j5rwQILkgU"
+            },
+            {
+                "Blok": "Pancasila",
+                "id": "1qs08IQ47o2foLECDPC6Ei6zsvB-eRfsWJpzStNZYxX8"
+            },
+            {
+                "Blok": "Promosi dan Pencegahan Kedokteran Gigi Masyarakat",
+                "id": "1UbJdpmXu7M_dYUM2u8asvTm54Ga7Mox8QA33H_4GE-Y"
+            },
+            {
+                "Blok": "Sistem Stomatognatik I",
+                "id": "172rKTitLrIDnfn4KafrjtVKxigwniFOlVaVrghaBHgQ"
+            },
+            {
+                "Blok": "Skills Lab Diagnosis Oral",
+                "id": "1TazMnX9mH9EcdT7OgQR-ow2CQ0wqvqeeV0r5NzNDOaQ"
+            },
+            {
+                "Blok": "Skills Lab Integrasi I",
+                "id": "1LHiJcDAIby2s0u-OL3ggZR6Xfj-R5Qnmgh5cfE310dw"
+            },
+            {
+                "Blok": "Skills Lab Integrasi II",
+                "id": "1yC5QDtbcMZurYtC6HnxrQq9obSmWCbqzV8F6-KHhyz8"
+            },
+            {
+                "Blok": "Skills Lab Integrasi III",
+                "id": "12F2vEO8hIsjAkYJRW6J8XJR_GzDOxQ-QDNSv_29lZhw"
+            },
+            {
+                "Blok": "Skills Lab Integrasi IV",
+                "id": "19v3QfqhFFxBO-B672LsxrpD2SKcfPmCTng3MwasargQ"
+            },
+            {
+                "Blok": "Skills Lab Integrasi V",
+                "id": "1sKXBk4Lu76wCxdc4XmgBDeoThGm761YFJ-wzUmo_zAE"
+            },
+            {
+                "Blok": "Skills Lab Konservasi Gigi I",
+                "id": "1b3tenFewpKX_G2qvSp7TlAZlWeXRNPFYvKgh_MGoUCQ"
+            },
+            {
+                "Blok": "Skills Lab Ortodonsia",
+                "id": "1NINP3mQlkzc8ONjSX2mX10O6k43_1g7UEzBR0vJTexE"
+            },
+            {
+                "Blok": "Skills Lab Prostodonsia I",
+                "id": "1a88k6yN7ok0m7lf0sEyuL2093_AjfD965WKcQwEg9C0"
+            },
+            {
+                "Blok": "Skills Lab Prostodonsia II",
+                "id": "1Li1pcZAXj0IzQkODeLFyUFpCm8v4jvZ4W4ybT2esj_0"
+            },
+            {
+                "Blok": "Skills lab Konservasi Gigi II",
+                "id": "1aW8hmlYrMxuqN3FheDIKMJt_C4kTw2IdsRSqwseyEF0"
+            },
+            {
+                "Blok": "Tumbuh Kembang I",
+                "id": "1lDTaTKv-TxmLtiOyAHd1ENQujNWBtuW_U7uRIC3WwH8"
+            },
+            {
+                "Blok": "Tumbuh Kembang II",
+                "id": "1_iMU5-jy0f6A579c3evmsokI0XHXo04Wq_pt8NYeUvY"
+            }
+        ]
+
+        // Fetch and populate Sarjana table
+        populateTable(blokRekap, 'sarjana_table_content');
+
+        // Fetch and populate Profesi table
+        populateTable(profesiData, 'profesi_table_content');
+    </script>
+</body>
+</html>
